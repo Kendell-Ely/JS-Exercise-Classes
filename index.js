@@ -99,24 +99,24 @@ class Airplane {
 
     drive(distance){  
 
-    
-      this.odometer += distance;
-      this.tank -= (distance/this.milesPerGallon);
-    
-    if(distance > this.tank){
+     
+      if(this.tank > distance){
 
-      this.odometer += this.tank;
-      this.tank = 0;
+        this.odometer += distance;
+        this.tank = this.tank - distance;
 
-      return `I ran out of fuel at ${this.odometer} miles!`
-    }
-        
-        
+       }else if (this.tank < distance){
+         this.odometer = this.odometer + (this.tank * this.milesPerGallon);
+         this.tank = 0;
+          return `I ran out of fuel at ${this.odometer} miles!`
+      }
+
+  }
       
        
-      }
+      
     }
-
+  
   
   
   /*
@@ -171,7 +171,7 @@ class Airplane {
  }
 
  grade(student,subject){
-return `${this.name} receives a pefect score on ${subject}`
+return `${student.name} receives a pefect score on ${subject}`
  }
 
  }
@@ -195,7 +195,7 @@ return `${this.name} receives a pefect score on ${subject}`
       super({name, age, location});
       this.previousBackground = previousBackground;
       this.className = className;
-      this.favSubjects =[];
+      this.favSubjects =favSubjects;
      }
 
      listSubjects(){
@@ -231,14 +231,15 @@ return `${this.name} receives a pefect score on ${subject}`
       super({name, age, location, specialty, favLanguage, catchPhrase});
       this.gradClassName = gradClassName;
       this.favInstructor = favInstructor;
+    
      }
 
      standUp(channel){
-      return `${Instructor.name} announces to ${channel}, @channel standy time!`;
+      return `${this.name} announces to ${channel}, @channel standy time!`;
      }
 
      debugsCode(student, subject){
-      returns `${name} debugs ${this.name}'s code on ${subject}`
+      return `${this.name} debugs ${student.name}'s code on ${subject}`
      }
 
 
